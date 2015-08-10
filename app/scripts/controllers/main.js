@@ -2,7 +2,7 @@
 
 angular.module('todosApp')
 
-  .controller('TodoCtrl', function (api) {
+  .controller('TodoCtrl', function (api, $scope) {
     var self = this;
 
     self.todos = [];
@@ -13,6 +13,8 @@ angular.module('todosApp')
         self.todos = data;
       });
     };
+    
+    $scope.$on('update', update);
 
     update();
 
@@ -25,15 +27,7 @@ angular.module('todosApp')
       }
     };
 
-    self.save = function (event, todo) {
-      if (event.keyCode === 13) {
-        api.update(todo, update);
-      }
-    };
-
-    self.done = function (todo) {
-      api.delete(todo).then(update);
-    };
+   
   })
 
   .controller('MainCtrl', function () {
