@@ -1,0 +1,15 @@
+<div ng-controller="TodoCtrl as todoVm">
+<div class="row">
+	<div class="col-md-12 task" ng-repeat="todo in todoVm.todos track by todo.id">
+		<button ng-click="todoVm.done(todo)"
+			class="btn btn-xs btn-danger">Done</button>
+		<input type="text" ng-model="todo.text" ng-keyup="todoVm.save($event,todo)">
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<input type="text" ng-model="todoVm.new_todo" ng-keyup="todoVm.add($event)">
+	</div>
+</div>
+</div>
