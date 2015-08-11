@@ -24,4 +24,26 @@ angular.module('todo')
 				};
 			}
 		};
+	})
+	.directive('newtodo', function (api) {
+		return {
+			restrict: 'E',
+			scope: {
+				size: '@?'
+			},
+			template: '<div class="row"><div class="col-md-12"><input type="text" ng-model="new_todo" ng-keyup="add($event)" style="font-size: {{size}}"></div></div>',
+			link: function (scope) {
+				scope.new_todo = '';
+				scope.size = scope.size || 'normal';
+				
+				scope.add = function (event) {
+					if (event.keyCode === 13) {
+						api.add(scope.new_todo).then(function () {
+							scope.$emit('update');
+							scope.new_todo = '';
+						});
+					}
+				};
+			}
+		};
 	});
