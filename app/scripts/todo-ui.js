@@ -6,7 +6,7 @@ angular.module('todo')
 			scope: {
 				item: '=todo'
 			},
-			template: '<button ng-click="done(item)" class="btn btn-xs btn-danger">Done</button><input type="text" ng-model="item.text" ng-keyup="save($event)">',
+			template: '<button ng-click="done(item)" class="btn btn-xs btn-danger">Done</button><input type="text" ng-model="item.text" ng-keyup="save($event)"><a href="/#{{item.id}}" class="btn btn-xs btn-default">Info</a>',
 			link: function (scope) {
 				scope.save = function (event) {
 					if (event.keyCode === 13) {
