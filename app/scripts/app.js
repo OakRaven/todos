@@ -8,6 +8,7 @@
  *
  * Main module of the application.
  */
+
 angular
   .module('todosApp', [
     'ngAnimate',
@@ -39,4 +40,13 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .run(function ($rootScope) {
+    $rootScope.$on('$routeChangeSuccess', function (data) {
+      console.log('$routeChangeSuccess:', data);
+    });
+    $rootScope.$on('$viewContentLoaded', function (data) {
+      console.log('$viewContentLoaded:', data);
+    })
   });
+  
