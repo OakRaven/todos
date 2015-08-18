@@ -29,7 +29,12 @@ angular
       .when('/:id', {
         templateUrl: 'views/detail.html',
         controller: 'DetailCtrl',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+          id: function ($q, $route, api) {
+            return api.getOne($route.current.params.id);
+          }
+        }
       })
       .otherwise({
         redirectTo: '/'
